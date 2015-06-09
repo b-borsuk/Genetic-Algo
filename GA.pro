@@ -18,9 +18,11 @@ TEMPLATE = app
 SOURCES += main.cpp \
     gene.cpp \
     chromosome.cpp \
-    population.cpp
+    population.cpp \
+    cluster.cpp
 
 HEADERS += \
     gene.h \
     chromosome.h \
-    population.h
+    population.h \
+    cluster.h
