@@ -17,6 +17,7 @@ public:
     bool operator< (const Chromosome &ch) const;
     void mutate();
 
+    double income() const;
 public:
     QVector<Gene> genes;
     int money;

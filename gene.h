@@ -7,12 +7,13 @@ class Gene
 {
 public:
     Gene();
-    Gene(const int min, const int max, const double income);
+    Gene(const int min, const int max, const double incomeAll);
 
     int count() const;
     double countDouble() const;
     void setCount(const int count);
     void setCount(const double count);
+    double incomeAll() const;
     double income() const;
 
 protected:

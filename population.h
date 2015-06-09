@@ -10,6 +10,9 @@ public:
     Population(const int initalPopCount);
     void createNewPopulation();
 
+    void print() const;
+    bool finished() const;
+
 private:
     QList<Chromosome> chromosomes;
 };

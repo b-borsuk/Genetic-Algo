@@ -23,12 +23,13 @@ Chromosome::Chromosome(const int money) :
 
 double Chromosome::fitness() const
 {
+    double buf = this->income();
+
     double income = 0;
     for (int i=0; i<genes.count(); ++i)
-        income += genes[i].income();
+        income += genes[i].income() * genes[i].incomeAll() / buf;
 
-    double penalty = 0;
-
+    double penalty = (2 * qAbs(buf - money) + buf - money) / 2;
 
     return income - penalty;
 }
@@ -48,10 +49,10 @@ Chromosome Chromosome::operator+(const Chromosome &ch)
 
 double Chromosome::operator-(const Chromosome &ch)
 {
-    double res=0
-            ;
+    double res=0;
+
     for (int i=0; i<this->genes.count(); ++i)
-        res += qPow( this->genes.count() - ch.genes.count(), 2 );
+        res += qPow( this->genes[i].count() - ch.genes[i].count(), 2 );
 
     return qSqrt(res);
 }
@@ -66,5 +67,15 @@ void Chromosome::mutate()
     for (int i=0; i<genes.count(); ++i)
         if (RAND > 0.6)
             genes[i].setCount( RAND );
+}
+
+double Chromosome::income() const
+{
+    double income = 0;
+
+    for (int i=0; i<genes.count(); ++i)
+        income += genes[i].incomeAll();
+
+    return income;
 }
 

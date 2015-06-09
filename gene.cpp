@@ -36,8 +36,13 @@ void Gene::setCount(const double count)
     _count = count * (min+max);
 }
 
-double Gene::income() const
+double Gene::incomeAll() const
 {
     return _income * _count;
+}
+
+double Gene::income() const
+{
+    return _income;
 }
 
