@@ -1,6 +1,7 @@
 #ifndef GENE_H
 #define GENE_H
 
+#define RAND ((float)qrand() / RAND_MAX)
 
 class Gene
 {

@@ -1,7 +1,6 @@
 #include "chromosome.h"
 
-#define RAND ((float)qrand() / RAND_MAX)
-#include <QDebug>
+#include <QtCore/QtMath>
 
 Chromosome::Chromosome() :
     money(0)
@@ -45,6 +44,16 @@ Chromosome Chromosome::operator+(const Chromosome &ch)
         res.genes.append( RAND > 0.5 ? this->genes[i] : ch.genes[i] );
 
     return res;
+}
+
+double Chromosome::operator-(const Chromosome &ch)
+{
+    double res=0
+            ;
+    for (int i=0; i<this->genes.count(); ++i)
+        res += qPow( this->genes.count() - ch.genes.count(), 2 );
+
+    return qSqrt(res);
 }
 
 bool Chromosome::operator<(const Chromosome &ch) const

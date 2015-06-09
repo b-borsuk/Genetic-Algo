@@ -13,6 +13,7 @@ public:
 
     double fitness() const;
     Chromosome operator+ (const Chromosome &ch);
+    double operator- (const Chromosome &ch);
     bool operator< (const Chromosome &ch) const;
     void mutate();
 
