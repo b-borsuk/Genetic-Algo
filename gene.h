@@ -1,21 +1,24 @@
 #ifndef GENE_H
 #define GENE_H
 
+
 class Gene
 {
 public:
-    Gene(const int a, const int b, int count);
+    Gene();
+    Gene(const int min, const int max, const double income);
 
-    double count() const;
     int count() const;
+    double countDouble() const;
     void setCount(const int count);
     void setCount(const double count);
-
+    double income() const;
 
 protected:
-    int a;
-    int b;
+    int min;
+    int max;
     int _count;
+    int _income;
 };
 
 #endif // GENE_H

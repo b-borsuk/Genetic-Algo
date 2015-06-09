@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2015-06-08T22:14:11
+# Project created by QtCreator 2015-06-08T09:47:51
 #
 #-------------------------------------------------
 
@@ -16,7 +16,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    gene.cpp
+    gene.cpp \
+    chromosome.cpp \
+    population.cpp
 
 HEADERS += \
-    gene.h
+    gene.h \
+    chromosome.h \
+    population.h
