@@ -54,15 +54,14 @@ void Population::createNewPopulation()
         }
 }
 
+bool Population::finished() const
+{
+    return chromosomes.count() == 1;
+}
+
 void Population::print() const
 {
     for (int i=0; i<chromosomes.count(); ++i)
         qDebug() << chromosomes[i].income() << " | " << chromosomes[i].fitness();
 
 }
-
-bool Population::finished() const
-{
-    return chromosomes.count() == 1;
-}
-

@@ -18,7 +18,7 @@ public:
     void mutate();
 
     double income() const;
-public:
+protected:
     QVector<Gene> genes;
     int money;
 };

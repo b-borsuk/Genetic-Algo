@@ -9,11 +9,11 @@ class Population
 public:
     Population(const int initalPopCount);
     void createNewPopulation();
-
-    void print() const;
     bool finished() const;
 
-private:
+    void print() const;
+
+protected:
     QList<Chromosome> chromosomes;
 };
 
