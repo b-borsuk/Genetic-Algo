@@ -19,10 +19,12 @@ SOURCES += main.cpp \
     gene.cpp \
     chromosome.cpp \
     population.cpp \
-    cluster.cpp
+    cluster.cpp \
+    chromosometest.cpp
 
 HEADERS += \
     gene.h \
     chromosome.h \
     population.h \
-    cluster.h
+    cluster.h \
+    chromosometest.h

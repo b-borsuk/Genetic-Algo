@@ -2,19 +2,24 @@
 
 #include "population.h"
 #include <QDebug>
+#include "chromosometest.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Population p(20, 10, 0.2);
+   /* ChromosomeTest *ch = new ChromosomeTest();
+    ch->f(0);
+    delete ch;
+    return 0;*/
+
+    Population p(20, 50, 0.2);
 
     p.print();
 
     int i;
     for (i=0; i<5000; ++i)
     {
-        qDebug() << i;
         p.createNewPopulation();
         if ( p.finished() )
             break;

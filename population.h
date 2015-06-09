@@ -18,6 +18,7 @@ public:
 protected:
     int clusterRadius;
     double mutationProbability;
+    int popCount;
     QList<Chromosome> chromosomes;
     QVector<Cluster> clusters;
 

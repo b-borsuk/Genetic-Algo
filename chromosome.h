@@ -4,10 +4,12 @@
 #include "gene.h"
 
 #include <QVector>
+#include "chromosometest.h"
 
 class Chromosome
 {
 public:
+    friend class ChromosomeTest;
     Chromosome();
     Chromosome(const int money);
 
@@ -18,6 +20,8 @@ public:
     void mutate();
 
     double income() const;
+    double price() const;
+
 protected:
     QVector<Gene> genes;
     int money;

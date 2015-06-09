@@ -8,11 +8,12 @@ Gene::Gene() :
 {
 }
 
-Gene::Gene(const int min, const int max, const double income) :
+Gene::Gene(const int min, const int max, const double price, const double income) :
     min(min),
     max(max),
     _count(0),
-    _income(income)
+    _income(income),
+    _price(price)
 {
 }
 
@@ -23,7 +24,7 @@ int Gene::count() const
 
 double Gene::countDouble() const
 {
-    return _count / (min+max);
+    return (_count-min) / (max - min);
 }
 
 void Gene::setCount(const int count)
@@ -33,7 +34,7 @@ void Gene::setCount(const int count)
 
 void Gene::setCount(const double count)
 {
-    _count = count * (min+max);
+    _count = count * (max - min) + min;
 }
 
 double Gene::incomeAll() const
@@ -44,5 +45,10 @@ double Gene::incomeAll() const
 double Gene::income() const
 {
     return _income;
+}
+
+double Gene::price() const
+{
+    return _price * _count;
 }
 

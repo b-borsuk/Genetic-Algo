@@ -11,11 +11,11 @@ Chromosome::Chromosome(const int money) :
     money(money)
 {
     genes.clear();
-    genes.append( Gene(10, 20, 12.5) );
-    genes.append( Gene(10, 200, 6.8) );
-    genes.append( Gene(100, 120, 20) );
-    genes.append( Gene(5, 50, 10.4) );
-    genes.append( Gene(40, 150, 18.9) );
+    genes.append( Gene(10, 20, 6, 12.5) );
+    genes.append( Gene(10, 50, 2, 6.8) );
+    genes.append( Gene(100, 120, 11.6, 20) );
+    genes.append( Gene(5, 50, 20, 10.4) );
+    genes.append( Gene(40, 90, 5, 18.9) );
 
     for (int i=0; i<genes.count(); ++i)
         genes[i].setCount( RAND );
@@ -23,11 +23,11 @@ Chromosome::Chromosome(const int money) :
 
 double Chromosome::fitness() const
 {
-    double buf = this->income();
+    double buf = this->price();
 
     double income = 0;
     for (int i=0; i<genes.count(); ++i)
-        income += genes[i].income() * genes[i].incomeAll() / buf;
+        income += genes[i].income() * genes[i].price() / buf;
 
     double penalty = (2 * qAbs(buf - money) + buf - money) / 2;
 
@@ -75,6 +75,16 @@ double Chromosome::income() const
 
     for (int i=0; i<genes.count(); ++i)
         income += genes[i].incomeAll();
+
+    return income;
+}
+
+double Chromosome::price() const
+{
+    double income = 0;
+
+    for (int i=0; i<genes.count(); ++i)
+        income += genes[i].price();
 
     return income;
 }

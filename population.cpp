@@ -6,7 +6,8 @@
 
 Population::Population(const int initalPopCount, const int clusterRadius, const double mutationProbability) :
     clusterRadius(clusterRadius),
-    mutationProbability(mutationProbability)
+    mutationProbability(mutationProbability),
+    popCount(initalPopCount)
 {
     for (int i=0; i<initalPopCount; ++i)
         chromosomes.append( Chromosome(2000) );
@@ -17,6 +18,7 @@ void Population::createNewPopulation()
     clustering();
     createNewChromosomesinClusters();
 
+    //createNewChromosomes();
 /*    for (int i=0; i<chromosomes.count(); ++i)
         for (int j=0; j<chromosomes.count(); ++j)
         {
@@ -103,7 +105,8 @@ void Population::createNewChromosomesinClusters()
     // kill bad chromosomes
     qSort( newPopulation );
 
-    int count = chromosomes.count();
+    int count = popCount;
+    //int count = chromosomes.count();
     int newCount = newPopulation.count();
     int removeIndex = 0;
     while (newCount-- > count)
@@ -124,7 +127,7 @@ void Population::createNewChromosomesinClusters()
     }
 
     // random mutation
-    for (int i=0, iL=chromosomes.count(); i<iL; ++i)
+    for (int i=0, iL=newPopulation.count(); i<iL; ++i)
     {
         bool isCentroid = false;
         for (int c=0, cL=clusters.count(); c<cL; ++c)
@@ -148,7 +151,7 @@ void Population::clustering()
     qSort(chromosomes);
 
     clusters.clear();
-    for (int i=0, iL=chromosomes.count(); i<iL; ++i)
+    for (int i=chromosomes.count()-1; i>=0; --i)
     {
         bool inCluster = false;
         for (int j=0, jL=clusters.count(); j<jL; ++j)
@@ -161,27 +164,15 @@ void Population::clustering()
             clusters.append( Cluster( &chromosomes[i] ) );
     }
 
-    return;
-    //TODO: а хуй його знає чи воно робоче..
+    //return;
+
     for (int i=0; i<clusters.count(); ++i)
         if (clusters[i].chromosomes.count() <= 1)
         {
-            int bestIndex = -1;
-            double bestLength = 100000;
-            for (int j=0, jL=clusters.count(); j<jL; ++j)
-            {
-                if (i==j)
-                    continue;
-                double curLength = clusters[i] - *clusters[j].centroid();
-                if (curLength < bestLength)
-                {
-                    bestLength = curLength;
-                    bestIndex = j;
-                }
-            }
-            clusters[ bestIndex ].append( clusters[i].centroid() );
-            clusters.removeAt( i );
-            --i;
+            Chromosome ch = *clusters[i].chromosomes[0];
+            ch.mutate();
+            chromosomes.append( ch );
+            clusters[i].append( &chromosomes[ chromosomes.count() -1 ] );
         }
 
 }
