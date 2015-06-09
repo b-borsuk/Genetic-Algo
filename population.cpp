@@ -180,7 +180,7 @@ void Population::clustering()
                 }
             }
             clusters[ bestIndex ].append( clusters[i].centroid() );
-            clusters.removeAt( bestIndex );
+            clusters.removeAt( i );
             --i;
         }
 
